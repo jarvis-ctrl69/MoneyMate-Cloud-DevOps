@@ -7,6 +7,13 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+app.get("/health", (req, res) => {
+    res.status(200).json({
+        status: "ok",
+        service: "MoneyMate Backend"
+    });
+});
+
 const MONGO_URI =
     process.env.MONGO_URI ||
     "mongodb://127.0.0.1:27017/MoneyMate";
