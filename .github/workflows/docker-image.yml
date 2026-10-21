@@ -1,0 +1,31 @@
+
+name: MoneyMate Docker CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build-frontend:
+    name: Build Frontend Image
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Build frontend Docker image
+        run: docker build -t moneymate-frontend:ci ./frontend
+
+  build-backend:
+    name: Build Backend Image
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Build backend Docker image
+        run: docker build -t moneymate-backend:ci ./backend
